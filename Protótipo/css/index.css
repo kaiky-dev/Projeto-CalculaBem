@@ -44,6 +44,11 @@ body {
     color: white
 }
 
+.visor input.imcInput{
+    width: 49.3%;
+    text-align: center
+}
+
 .buttons, .calcs {
     display: flex;
     flex-wrap: wrap;

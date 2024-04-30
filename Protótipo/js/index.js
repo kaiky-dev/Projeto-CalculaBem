@@ -1,93 +1,141 @@
-// Visor
 //Buscando elementos
-const result = document.getElementsByClassName("result")[0]; //Resultado
-const display = document.getElementsByClassName("display"); //Inputs 
-let currentDisplay = display[0] //Input Atual (calculadora)
 
-// Buscando botões
+//Visor
+const result = document.getElementsByClassName("result")[0]; //Resultado
+
+const calculatorInput = document.getElementsByClassName("calculatorInput")[0];//Calculator Input
+
+const waterInput = document.getElementsByClassName("waterInput")[0];//Water Input
+
+const benedictInput = document.getElementsByClassName("benedict")
+
+const imcInput = document.getElementsByClassName("imcInput");//Imc Inputs
+const imcInputM = imcInput[0];//Imc Input M
+const imcInputKg = imcInput[1];//Imc Input KG
+
+
+const inputs =[calculatorInput, waterInput, imcInput];//Inputs
+
+let currentInput = inputs[0];//Input Atual
+
+//Botões
 const button = document.getElementsByTagName("button");
 
-// Botões dos calculos de saúde
-let condicion = true; //Condição para o if
-let currentCalc = calculation; //Calculo atual
+//Botões eventos
 
+//Números
+button[7].addEventListener("click", () => currentInput.value += 7);//7
+button[8].addEventListener("click", () => currentInput.value += 8);//8
+button[9].addEventListener("click", () => currentInput.value += 9);//9
+//
+button[11].addEventListener("click", () => currentInput.value += 4);//4
+button[12].addEventListener("click", () => currentInput.value += 5);//5
+button[13].addEventListener("click", () => currentInput.value += 6);//6
+//
+button[15].addEventListener("click", () => currentInput.value += 1);//1
+button[16].addEventListener("click", () => currentInput.value += 2);//2
+button[17].addEventListener("click", () => currentInput.value += 3);//3
+//
+button[20].addEventListener("click", () => currentInput.value += 0);//0
+
+//Limpar
+button[3].addEventListener("click", () => currentInput.value = "");//AC
+button[4].addEventListener("click", () => currentInput.value = currentInput.value.slice(0, -1));//DEL
+
+//Operadores
+button[5].addEventListener("click", () => currentInput.value += "%");//%
+button[6].addEventListener("click", () => currentInput.value += "/");// /
+button[10].addEventListener("click", () => currentInput.value += "*");// *
+button[14].addEventListener("click", () => currentInput.value += "-");//-
+button[18].addEventListener("click", () => currentInput.value += "+");//+
+button[19].addEventListener("click", () => currentInput.value += ".");//.
+
+//Calcular (=)
+let calculations = [calculator, waterCalc, imc];//Cálculos
+
+let currentCalculation = calculations[0];//Cálculo atual
+
+button[21].addEventListener("click", ()=> currentCalculation());//=
+
+//New calculator functions
 button[0].addEventListener("click", () => {
+    if(currentInput != inputs[1] && currentInput != inputs[2]){
+        currentInput.classList.add("none");
+        currentInput.value = "";
 
-    if (condicion) {
-        display[0].classList.add("none"); //Remove visualmente o input da calculadora
-        currentDisplay.value = ""; //Limpa o input atual (calculadora)
-
-        display[1].classList.remove("none"); //Adiciona visualmente o input da água
-        currentCalc = waterCalc; //Calculo atual vira o da água
-        currentDisplay = display[1]; //Input atual agora é da água
+        currentInput = inputs[1];
+        currentInput.classList.remove("none");
         
-        button[21].addEventListener("click", currentCalc); //Botão de calcular (=)
+        currentCalculation = calculations[1]
+    }
+    else if(currentInput == inputs[1]){
+        currentInput.classList.add("none");
+        currentInput.value = "";
+
+        currentInput = inputs[0];
+        currentInput.classList.remove("none");
+
+        currentCalculation = calculations[0]
+    }
+    else if (currentInput == inputs[2]){
+        currentInput[0].classList.add("none");
+        currentInput[1].classList.add("none");
         
-        condicion = false; //Muda o valor da condição
+        currentInput[0].value = "";
+        currentInput[1].value = "";
 
-    } //Condição para remover o input(display) da calculadora e adicionar o da água
+        currentInput = inputs[1];
+        currentInput.classList.remove("none");
 
-    else if (condicion == false) {
-        display[1].classList.add("none"); //Remove visualmente o input da água
-        currentDisplay.value = ""; //Limpa o input atual (água)
-
-        display[0].classList.remove("none"); //Adiciona visualmente o input da calculadora
-        currentCalc = calculation; //Calculo atual vira de calculadora
-        currentDisplay = display[0]; //Input atual agora é o da calculadora
-
-        button[21].addEventListener("click", currentCalc); //Botão de calcular (=)
-
-        condicion = true; //Muda o valor da condição
-
-    } //Condição para remover o input(display) da água e adicionar o da calculadora
-
+        currentCalculation = calculations[1]
+    }
     else{
-        console.log("Porra.. Ocorreu um erro.")
-    } //Se ocorrer algum erro nas condições
+        console.log("Ocorreu um erro.")
+    }
+});//Calculador de água
 
-}) //Botão do calculo da água e sua função
+button[2].addEventListener("click", ()=>{
+    if(currentInput != inputs[2]){
+        currentInput.classList.add("none");
+        currentInput.value = "";
 
-// button[1]
-// button[2]
+        currentInput = inputs[2];
+        currentInput[0].classList.remove("none");
+        currentInput[1].classList.remove("none");
 
-//Botões de limpar input
-button[3].addEventListener("click", () => currentDisplay.value = ""); //AC
-button[4].addEventListener("click", () => currentDisplay.value = currentDisplay.value.slice(0, -1));//DEL
+        currentCalculation = calculations[3]
+    }
+    else if(currentInput == inputs[2]){
+        currentInput[0].classList.add("none");
+        currentInput[1].classList.add("none");
 
-//Botões de numeros e operações
-button[5].addEventListener("click", () => currentDisplay.value += "%"); //%
-button[6].addEventListener("click", () => currentDisplay.value += "/"); // / 
-button[7].addEventListener("click", () => currentDisplay.value += 7); //7
-button[8].addEventListener("click", () => currentDisplay.value += 8); //8
-button[9].addEventListener("click", () => currentDisplay.value += 9); //9
-button[10].addEventListener("click", () => currentDisplay.value += "*"); //*
-button[11].addEventListener("click", () => currentDisplay.value += 4); //4
-button[12].addEventListener("click", () => currentDisplay.value += 5) //5
-button[13].addEventListener("click", () => currentDisplay.value += 6); //6
-button[14].addEventListener("click", () => currentDisplay.value += "-"); //-
-button[15].addEventListener("click", () => currentDisplay.value += 1); //1
-button[16].addEventListener("click", () => currentDisplay.value += 2); //2
-button[17].addEventListener("click", () => currentDisplay.value += 3); //3
-button[18].addEventListener("click", () => currentDisplay.value += "+"); //+
-button[19].addEventListener("click", () => currentDisplay.value += "."); //.
-button[20].addEventListener("click", () => currentDisplay.value += 0); //0
+        currentInput[0].value = "";
+        currentInput[1].value = "";
 
-button[21].addEventListener("click", currentCalc); //=
+        currentInput = inputs[0];
+        currentInput.classList.remove("none");
+
+        currentCalculation = calculations[0]
+    }
+    else{
+        console.log("Ocorreu um erro.")
+    }
+});//Calculador de IMC
 
 
-//Funções
-let calc; //Calculo
-
-function calculation() {
-    calc = eval(currentDisplay.value); //Calculo
-    console.log(calc);
-    result.textContent = calc //Mostrando resultado
-
-}; //Calculadora normal
+//Funções de cálculo
+let calculating; //Cálculo
+function calculator() {
+    calculating = eval(currentInput.value);
+    result.textContent = calculating
+};
 
 function waterCalc() {
-    calc = currentDisplay.value * 30 + ("ml"); //Calculo
-    console.log(calc);
-    result.textContent = calc //Mostrando resultado
-} //Calculadora de água
+    calculating = 30 * currentInput.value;
+    result.textContent = calculating + ("ml")
+};
 
+function imc(){
+    calculating = imcInputKg / (imcInputM * imcInputM);
+    result.textContent = ("IMC = ") + calculating;
+}
