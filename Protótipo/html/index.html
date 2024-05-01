@@ -10,6 +10,121 @@
 
     <link rel="stylesheet" type="text/css" href="../css/index.css">
 
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .calc {
+            background-color: black;
+            display: inline-block;
+            padding: 16px;
+            border-radius: 12px;
+            width: 400px;
+            height: 707px;
+        }
+
+        .visor {
+            padding: 12px;
+            margin-bottom: 20px
+        }
+
+        .visor .result {
+            color: white;
+            display: block;
+            text-align: right;
+            font-size: 30px;
+            height: 45px;
+        }
+
+        .visor .display {
+            width: 100%;
+            text-align: right;
+            font-size: 40px;
+            background-color: transparent;
+            border: none;
+            /* pointer-events: none; */
+            margin-top: 6px;
+            color: white
+        }
+
+        .visor input.imcInput {
+            width: 49.36%;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.300);
+            border-radius: 12px
+        }
+
+        .buttons,
+        .calcs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            width: 100%;
+            row-gap: 14px;
+        }
+
+        .buttons button {
+            width: 85px;
+            height: 75px;
+            border-radius: 50px;
+            font-size: 24px;
+            border: none;
+            background-color: rgb(68, 68, 68);
+            color: white
+        }
+
+        .buttons button[data-value="benedict"] {
+            width: 184px;
+            text-align: center;
+            border-radius: 50px;
+        }
+
+        .buttons button[data-value="0"] {
+            width: 184px;
+            text-align: center;
+            border-radius: 50px;
+        }
+
+        /*Others*/
+
+        .none {
+            display: none !important
+        }
+
+        button.bg-blue {
+            color: rgb(70, 140, 255);
+            background-color: transparent;
+            border: 2px solid rgb(70, 140, 255);
+        }
+
+        button.bg-yellow {
+            color: rgb(255, 255, 80);
+            background-color: transparent;
+            border: 2px solid rgb(255, 255, 80);
+        }
+
+        button.bg-green {
+            color: rgb(60, 255, 60);
+            background-color: transparent;
+            border: 2px solid rgb(60, 255, 60);
+        }
+
+        button.bg-orange {
+            background-color: rgb(255, 123, 0);
+            color: white;
+        }
+    </style>
+
     <title>Calc Bem</title>
 </head>
 
@@ -26,7 +141,7 @@
             <input class="display none benedict" type="text" placeholder="kg">
 
             <input class="display none imcInput" type="text" placeholder="0,00m">
-            <input class="display none imcInput" style="border-left: 2px solid white;" type="text" placeholder="kg">
+            <input class="display none imcInput" type="text" placeholder="kg">
 
         </div>
         <div class="buttons">
@@ -71,7 +186,7 @@
 
         </div>
     </div>
-<script src="../js/index.js"></script>
+    <script src="../js/index.js"></script>
 </body>
 
 </html>
