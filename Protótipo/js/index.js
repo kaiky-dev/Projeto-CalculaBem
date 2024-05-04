@@ -14,7 +14,7 @@ const imcInputM = imcInput[0];//Imc Input M
 const imcInputKg = imcInput[1];//Imc Input Kg
 
 
-const inputs = [calculatorInput, waterInput, imcInput];//Inputs
+const inputs = [calculatorInput, waterInput, benedictInput,imcInput];//Inputs
 
 let currentInput = inputs[0];//Input Atual
 
@@ -63,53 +63,62 @@ button[21].addEventListener("click", () => currentCalculation());//=
 
 //New calculator functions
 button[0].addEventListener("click", () => {
-    if (currentInput != inputs[1] && currentInput != inputs[2]) {
-        currentInput.classList.add("none");
-        currentInput.value = "";
+    if (currentInput != inputs[1] && !(currentInput == inputs[3] || (currentInput == imcInputM || currentInput == imcInputKg))) {
+        currentInput.classList.add("none"); //Removendo visualmente input atual
+        currentInput.value = ""; //Limpando Input atual
 
-        currentInput = inputs[1];
-        currentInput.classList.remove("none");
+        currentInput = inputs[1]; //Agora input atual é o da água
+        currentInput.classList.remove("none"); //Mostrando input atual
 
-        currentCalculation = calculations[1]
-    }
+        currentCalculation = calculations[1] //Cálculo atual é o da água
+
+    }/*Mudando para input da água*/
+
     else if (currentInput == inputs[1]) {
-        currentInput.classList.add("none");
-        currentInput.value = "";
+        currentInput.classList.add("none"); //Sumindo com input(água)
+        currentInput.value = ""; //Limpando input(água)
 
-        currentInput = inputs[0];
-        currentInput.classList.remove("none");
+        currentInput = inputs[0]; //Input atual agora é calculadora
+        currentInput.classList.remove("none"); //Mostrando Input
 
-        currentCalculation = calculations[0]
-    }
-    else if (currentInput == inputs[2]) {
-        imcInputM.classList.add("none");
+        currentCalculation = calculations[0] //Cálculo atual é calculadora
+
+    }/*Removendo input(água) e voltando para calculadora*/
+
+    else if (currentInput == inputs[3] || (currentInput == imcInputM || currentInput == imcInputKg)) {
+        imcInputM.classList.add("none");//Sumindo com inputs(IMC)
         imcInputKg.classList.add("none");
 
-        imcInputM.value = "";
+        imcInputM.value = "";//Lipando inputs(IMC)
         imcInputKg.value = "";
 
-        currentInput = inputs[1];
-        currentInput.classList.remove("none");
+        currentInput = inputs[1];//Agora input atual é água
+        currentInput.classList.remove("none");//Mostrando Input
 
-        currentCalculation = calculations[1]
-    }
+        currentCalculation = calculations[1]//Calculo atual é de água
+        
+    }/*Mudando para input água, se input atual for de IMC*/
+
     else {
         console.log("Ocorreu um erro.")
     }
 });//Calculador de água
 
+
 button[2].addEventListener("click", () => {
-    if (currentInput != inputs[2] && currentInput != imcInputM && currentInput != imcInputKg) {
+    if (currentInput != inputs[3] && currentInput != imcInputM && currentInput != imcInputKg) {
         currentInput.classList.add("none");
         currentInput.value = "";
 
-        currentInput = inputs[2];
+        currentInput = inputs[3];
         imcInputM.classList.remove("none");
         imcInputKg.classList.remove("none");
 
         currentCalculation = calculations[2]
-    }
-    else if (currentInput == inputs[2] || currentInput == imcInputM || currentInput == imcInputKg) {
+        
+    }/*Mudando para inputs IMC*/
+
+    else if (currentInput == inputs[3] || currentInput == imcInputM || currentInput == imcInputKg) {
         imcInputM.classList.add("none");
         imcInputKg.classList.add("none");
 
@@ -120,7 +129,9 @@ button[2].addEventListener("click", () => {
         currentInput.classList.remove("none");
 
         currentCalculation = calculations[0]
-    }
+
+    }/*Removendo inputs(IMC) e voltando para calculadora*/
+
     else {
         console.log("Ocorreu um erro.")
     }
