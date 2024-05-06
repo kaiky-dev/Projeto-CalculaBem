@@ -9,19 +9,23 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    flex-wrap: wrap
 }
 
+/*Calculadora*/
 .calc {
     background-color: black;
     display: inline-block;
     padding: 16px;
     border-radius: 12px;
     width: 400px;
-    height: 707px;
+
+    max-height: 800px;
+    min-height: 700px;
 }
 
-.visor{
-    padding:12px;
+.visor {
+    padding: 12px;
     margin-bottom: 20px
 }
 
@@ -31,6 +35,8 @@ body {
     text-align: right;
     font-size: 30px;
     height: 45px;
+
+    margin: 0 0 12px 0;
 }
 
 .visor .display {
@@ -44,19 +50,63 @@ body {
     color: white
 }
 
-.visor input.imcInput{
+.visor .btns-benedict {
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row wrap;
+}
+
+.visor .btn-benedict {
+    width: 49.36%;
+    height: 60px;
+    border-radius: 10px;
+    font-size: 18px;
+}
+
+.visor .btn-benedict:hover {
+    background-color: yellow;
+    color: black;
+}
+
+.visor input.benedict{    width: 49.36%;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.300);
+    border-radius: 12px
+}
+
+.visor .idade {
+    margin: 0 auto 0 auto;
+}
+
+.visor input.imcInput {
     width: 49.36%;
     text-align: center;
     border: 1px solid rgba(255, 255, 255, 0.300);
     border-radius: 12px
 }
 
-.buttons, .calcs {
+.buttons,
+.calcs {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     width: 100%;
     row-gap: 14px;
+}
+
+.buttons .calcs .water-calc:hover{
+    background-color: rgb(70, 140, 255);
+    color: white;
+}
+
+.buttons .calcs .benedict-calc:hover{
+    background-color: yellow;
+    color: black;
+}
+
+.buttons .calcs .imc-calc:hover{
+    background-color: rgb(60, 255, 60);
+    color: black;
 }
 
 .buttons button {
@@ -69,13 +119,13 @@ body {
     color: white
 }
 
-.buttons button[data-value="benedict"]{
+.buttons button[data-value="benedict"] {
     width: 184px;
     text-align: center;
     border-radius: 50px;
 }
 
-.buttons button[data-value="0"]{
+.buttons button[data-value="0"] {
     width: 184px;
     text-align: center;
     border-radius: 50px;
@@ -83,29 +133,29 @@ body {
 
 /*Others*/
 
-.none{
+.none {
     display: none !important
 }
 
-button.bg-blue{
- color:rgb(70, 140, 255);
- background-color: transparent;
- border: 2px solid rgb(70, 140, 255);
+button.bg-blue {
+    color: rgb(70, 140, 255);
+    background-color: transparent;
+    border: 2px solid rgb(70, 140, 255);
 }
 
-button.bg-yellow{
-    color:rgb(255, 255, 80);
+button.bg-yellow {
+    color: rgb(255, 255, 80);
     background-color: transparent;
     border: 2px solid rgb(255, 255, 80);
 }
 
-button.bg-green{
-    color:rgb(60, 255, 60);
+button.bg-green {
+    color: rgb(60, 255, 60);
     background-color: transparent;
     border: 2px solid rgb(60, 255, 60);
 }
 
-button.bg-orange{
+button.bg-orange {
     background-color: rgb(255, 123, 0);
-    color:white;
+    color: white;
 }
