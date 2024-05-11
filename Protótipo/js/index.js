@@ -7,6 +7,7 @@ const calculatorInput = document.getElementsByClassName("calculatorInput")[0];//
 
 const waterInput = document.getElementsByClassName("waterInput")[0];//Água Input peso(Kg)
 
+
 const benedictInput = document.getElementsByClassName("benedict");//Benedict inputs
 
 const benedictButton = document.querySelectorAll("button.btn-benedict");//Benedict botões
@@ -118,10 +119,11 @@ button[0].addEventListener("click", () => {
 
     }/*Removendo input(água) e voltando para calculadora*/
 
-    else if (currentInput == inputs[2] || (currentInput == benedictInputKg || currentInput == benedictInputM)) {
+    else if (currentInput == inputs[2] || currentInput == benedictInputKg || currentInput == benedictInputM || currentInput == benedictInputYOld) {
 
         benedictBtnH.classList.add("none");//Removendo inputs(benedict)
         benedictBtnM.classList.add("none");
+        benedictInputYOld.classList.add("none");
 
         benedictInputM.classList.add("none");
         benedictInputKg.classList.add("none");
@@ -136,7 +138,7 @@ button[0].addEventListener("click", () => {
 
     }/*Removendo inputs(benedict) e voltando para água*/
 
-    else if (currentInput == inputs[3] || (currentInput == imcInputM || currentInput == imcInputKg)) {
+    else if (currentInput == inputs[3] || currentInput == imcInputM || currentInput == imcInputKg) {
         imcInputM.classList.add("none");//Sumindo com inputs(IMC)
         imcInputKg.classList.add("none");
 
@@ -172,9 +174,10 @@ button[1].addEventListener("click", () => {
 
     }/*Mudando para inputs Benedict*/
 
-    else if (currentInput == inputs[2] || currentInput == benedictInputM || currentInput == benedictInputKg) {
+    else if (currentInput == inputs[2] || currentInput == benedictInputM || currentInput == benedictInputKg || currentInput == benedictInputYOld) {
         benedictBtnH.classList.add("none");//Removendo inputs(benedict)
         benedictBtnM.classList.add("none");
+        benedictInputYOld.classList.add("none")
 
         benedictInputM.classList.add("none");
         benedictInputKg.classList.add("none");
@@ -219,7 +222,7 @@ button[1].addEventListener("click", () => {
 
         currentCalculation = calculations[2]//Cálculo atual = benedict
 
-    }
+    }/*Removendo inputs(imc), adicionando inputs(benedict)*/
 
     else {
         console.log("Ocorreu um erro.")
@@ -252,9 +255,10 @@ button[2].addEventListener("click", () => {
         currentCalculation = calculations[3]
     }/*Removendo input(água), adicionando inputs(imc)*/
 
-    else if (currentInput == inputs[2] || currentInput == benedictInputM || currentInput == benedictInputKg) {
+    else if (currentInput == inputs[2] || currentInput == benedictInputM || currentInput == benedictInputKg || currentInput == benedictInputYOld) {
         benedictBtnH.classList.add("none");//Removendo inputs(benedict)
         benedictBtnM.classList.add("none");
+        benedictInputYOld.classList.add("none")
 
         benedictInputM.classList.add("none")
         benedictInputKg.classList.add("none")
@@ -296,7 +300,12 @@ let calculating = 0; //Cálculo
 
 function calculator() {
 
-    calculating = eval(calculatorInput.value);
+    let inputValue = calculatorInput.value;
+
+    input = inputValue.replace("%", "/100");
+
+    calculating = eval(input);
+
     result.textContent = calculating
 
 };//Calculadora
